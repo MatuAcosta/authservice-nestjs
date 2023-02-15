@@ -1,2 +1,2 @@
 # authservice-nestjs
-Authentication backend service with nestjs using jwt
+Authentication rest api  with nestjs using jwt
