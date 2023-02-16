@@ -8,9 +8,9 @@ export class CreateUserDTO {
     @ApiProperty({
         type: String
     })
+    @AutoMap()
     @IsString()
     @IsNotEmpty()
-    @AutoMap()
     name: string;
     @ApiProperty({
         type: String
@@ -22,9 +22,9 @@ export class CreateUserDTO {
     @ApiProperty({
         type: String
     })
+    @AutoMap()
     @IsAlphanumeric()
     @IsNotEmpty()
-    @AutoMap()
     password: string;
     @ApiPropertyOptional({
         type: String
@@ -75,6 +75,8 @@ export class GetUserSecureDTO {
     @AutoMap()
     email:string;
 
+    @AutoMap()
+    role?: string;
 }
 
 export class GetUserDTO {
