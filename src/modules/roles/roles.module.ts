@@ -4,7 +4,7 @@ import { Role } from './entity/role.model';
 import { RolesProvider } from './entity/roles.provider';
 import { RoleRepository } from './repository/roles.repository';
 import { RoleService } from './service/role.service';
-const config = require('../../dal/config');
+const config = require('../../db/config');
 
 @Module({
     imports:[

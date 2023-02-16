@@ -1,4 +1,3 @@
-const config = require('./dal/config');
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';

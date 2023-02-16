@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-const config = require('../dal/config');
+const config = require('./config');
 
 @Module({
     imports: [ SequelizeModule.forRoot({...config, models:[], autoLoadModels: true, synchronize: true})],

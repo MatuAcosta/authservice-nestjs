@@ -1,6 +1,6 @@
 import { createMap, forMember, ignore, Mapper } from "@automapper/core";
 import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
-import { DomainUserCreated, DomainUserUpdated} from "src/domain/user";
+import { DomainUserCreated} from "src/domain/user";
 import { CreateUserDTO, GetUserDTO, GetUserSecureDTO, UpdateUserDTO } from "src/dtos/user.dto";
 import { User } from "./entity/user.model";
 

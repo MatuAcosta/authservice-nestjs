@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { RoleService } from 'src/modules/roles/service/role.service';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
-import { DomainUserCreated, DomainUserUpdated} from 'src/domain/user';
+import { DomainUserCreated} from 'src/domain/user';
 import { Role } from 'src/modules/roles/entity/role.model';
 
 @Injectable()
