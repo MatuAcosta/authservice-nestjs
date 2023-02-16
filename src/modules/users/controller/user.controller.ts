@@ -1,6 +1,6 @@
-import { BadRequestException, Body, Controller, Get, Param, ParseIntPipe,Res,Post, Put, Req, Response, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, ParseIntPipe,Post, Put, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
 import { Request } from 'express';
 import { CreateUserDTO, LoginDTO, LoginResponseDTO, UpdateUserDTO } from 'src/dtos/user.dto';
 import { AuthService } from 'src/modules/auth/service/auth.service';
