@@ -10,6 +10,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BaseModule } from './modules/base/base.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
+import { MailsenderModule } from './modules/mailsender/mailsender.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { classes } from '@automapper/classes';
     UsersModule,
     RolesModule,
     AuthModule,
-    BaseModule  
+    BaseModule,
+    MailsenderModule  
   ],
   controllers: [AppController],
   providers: [AppService],

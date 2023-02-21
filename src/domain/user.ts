@@ -1,5 +1,4 @@
 import { AutoMap } from "@automapper/classes";
-import { PartialType } from "@nestjs/mapped-types/dist";
 export class DomainUserCreated { 
 
     @AutoMap()

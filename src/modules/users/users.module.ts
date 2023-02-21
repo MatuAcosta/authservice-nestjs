@@ -3,6 +3,7 @@ import { forwardRef } from '@nestjs/common/utils/forward-ref.util';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from '../auth/auth.module';
 import { BaseModule } from '../base/base.module';
+import { MailsenderModule } from '../mailsender/mailsender.module';
 import { RolesModule } from '../roles/roles.module';
 import { UserController } from './controller/user.controller';
 import { User } from './entity/user.model';
@@ -16,7 +17,8 @@ import { UserService } from './services/user.service';
         SequelizeModule.forFeature([User]),
         forwardRef(()=> AuthModule), 
         BaseModule,
-        RolesModule
+        RolesModule,
+        MailsenderModule
     ],
     exports:[UserService],
     controllers:[UserController],
