@@ -3,10 +3,10 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 const config = {
-    dev: {
-        dialect: 'postgres',
+    development: {
+        //dialect: process.env.dialect,
         host: process.env.HOST,
-        port: +process.env.PORT,
+        port: 5432,
         username:process.env.USER,
         password: process.env.PASSWORD,
         database:process.env.DB

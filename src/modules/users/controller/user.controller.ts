@@ -24,9 +24,12 @@ export class UserController {
     }
 
     @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number) {
-        console.log();
-        return this.userService.findOne(id);
+    async findOne(@Param('id', ParseIntPipe) id: number) {
+        let user = await this.userService.findOne(id);
+        if (!user) return { message: 'user not found'}
+        return {
+            user
+        }
     }
 
 
@@ -46,8 +49,7 @@ export class UserController {
         let mailSend = await this.mailService.send(mail);
         if(userCreated) return {
             message: 'User succesfully created',
-            data: userCreated,
-            mailSend
+            data: userCreated
         }
 
     }
@@ -69,8 +71,7 @@ export class UserController {
         let mailSend = await this.mailService.send(mail);
         return {
             message: 'User authenticated',
-            token,
-            mailSend
+            token
         }
     }
 
