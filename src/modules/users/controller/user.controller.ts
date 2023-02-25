@@ -39,14 +39,14 @@ export class UserController {
         let checkExists = await this.authService.checkRegister(user.email);
         if(checkExists) throw new BadRequestException('Email already exists');
         let userCreated = await this.userService.create(user);
-        let mail = {
-            to: user.email,
-            subject: 'Hello from API',
-            from: "acosta_matias8@hotmail.com",
-            text: 'Welcome',
-            //html: '<h1>HELLO!</h1>'
-        }
-        let mailSend = await this.mailService.send(mail);
+        //let mail = {
+        //    to: user.email,
+        //    subject: 'Hello from API',
+        //    from: "acosta_matias8@hotmail.com",
+        //    text: 'Welcome',
+        //    //html: '<h1>HELLO!</h1>'
+        //}
+        //let mailSend = await this.mailService.send(mail);
         if(userCreated) return {
             message: 'User succesfully created',
             data: userCreated
@@ -61,14 +61,14 @@ export class UserController {
     async login(@Body() login: LoginDTO){
         let token = await this.authService.login(login);
         console.log(token);
-        let mail = {
-            to: login.email,
-            subject: 'Hello from API',
-            from: "acosta_matias8@hotmail.com",
-            text: 'Welcome',
-            //html: '<h1>HELLO!</h1>'
-        }
-        let mailSend = await this.mailService.send(mail);
+        //let mail = {
+        //    to: login.email,
+        //    subject: 'Hello from API',
+        //    from: "acosta_matias8@hotmail.com",
+        //    text: 'Welcome',
+        //    //html: '<h1>HELLO!</h1>'
+        //}
+        //let mailSend = await this.mailService.send(mail);
         return {
             message: 'User authenticated',
             token
