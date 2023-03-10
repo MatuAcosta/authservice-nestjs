@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import {Table,Model,Column, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import { Role } from 'src/modules/roles/entity/role.model';
+import { Role } from '../../roles/entity/role.model';
 
 @Table({
     timestamps:false

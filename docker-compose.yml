@@ -7,25 +7,28 @@ services:
       dockerfile: Dockerfile
       args:
         - ENV=development
+    network_mode: "host"
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - "5000:5000"
     depends_on:
       - postgres
-    links:
-      - postgres:postgres
+    #links:
+    #  - postgres:postgres
     volumes:
       - .:/app:rw
-      - /app/node_modules
     command: npm run start:dev
   
   postgres:
     image: postgres:alpine
     restart: always
+    network_mode: "host"
     ports:
       - "5432:5432"
     environment: 
       - POSTGRES_PASSWORD=olakase123
+
+
   
   

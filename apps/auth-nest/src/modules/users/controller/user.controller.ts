@@ -2,9 +2,9 @@ import { BadRequestException, Body, Controller, Get, Param, ParseIntPipe,Post, P
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
 import { Request } from 'express';
-import { CreateUserDTO, LoginDTO, LoginResponseDTO, UpdateUserDTO } from 'src/dtos/user.dto';
-import { AuthService } from 'src/modules/auth/service/auth.service';
-import { MailService } from 'src/modules/mailsender/mail/mail.service';
+import { CreateUserDTO, LoginDTO, LoginResponseDTO, UpdateUserDTO } from '../../../dtos/user.dto';
+import { AuthService } from '../../auth/service/auth.service';
+import { MailService } from '../../mailsender/mail/mail.service';
 import { UserService } from '../services/user.service';
 
 @ApiTags('users')
@@ -36,20 +36,14 @@ export class UserController {
     @Post('/register')
     @ApiResponse({status:201, type: CreateUserDTO})
     async register(@Body() user:CreateUserDTO){
+        console.log(user);
         let checkExists = await this.authService.checkRegister(user.email);
         if(checkExists) throw new BadRequestException('Email already exists');
         let userCreated = await this.userService.create(user);
-        //let mail = {
-        //    to: user.email,
-        //    subject: 'Hello from API',
-        //    from: "acosta_matias8@hotmail.com",
-        //    text: 'Welcome',
-        //    //html: '<h1>HELLO!</h1>'
-        //}
-        //let mailSend = await this.mailService.send(mail);
         if(userCreated) return {
             message: 'User succesfully created',
-            data: userCreated
+            data: userCreated,
+            statusCode: 201
         }
 
     }
@@ -61,17 +55,10 @@ export class UserController {
     async login(@Body() login: LoginDTO){
         let token = await this.authService.login(login);
         console.log(token);
-        //let mail = {
-        //    to: login.email,
-        //    subject: 'Hello from API',
-        //    from: "acosta_matias8@hotmail.com",
-        //    text: 'Welcome',
-        //    //html: '<h1>HELLO!</h1>'
-        //}
-        //let mailSend = await this.mailService.send(mail);
         return {
             message: 'User authenticated',
-            token
+            token,
+            statusCode: 200
         }
     }
 

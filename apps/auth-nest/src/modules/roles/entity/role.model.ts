@@ -1,5 +1,5 @@
 import {Table,Model,Column, HasMany} from 'sequelize-typescript';
-import { User } from 'src/modules/users/entity/user.model';
+import { User } from '../../users/entity/user.model';
 
 @Table({
     timestamps:false

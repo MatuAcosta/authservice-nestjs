@@ -1,20 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDTO, GetUserDTO, GetUserSecureDTO, UpdateUserDTO } from 'src/dtos/user.dto';
-import { User } from 'src/modules/users/entity/user.model';
+import { Inject, Injectable } from '@nestjs/common';
+import { CreateUserDTO, GetUserDTO, GetUserSecureDTO, UpdateUserDTO } from '../../../dtos/user.dto';
+import { User } from '../entity/user.model';
 import { UserRepository } from '../repository/user.repository';
 import * as bcrypt from 'bcrypt';
-import { RoleService } from 'src/modules/roles/service/role.service';
+import { RoleService } from '../../roles/service/role.service';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
-import { DomainUserCreated} from 'src/domain/user';
-import { Role } from 'src/modules/roles/entity/role.model';
+import { DomainUserCreated} from '../../../domain/user';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class UserService {
     userRepository:UserRepository
     private salts: number = 10;
     roleService: RoleService;
-    constructor(userRepository: UserRepository, roleService: RoleService, 
+    constructor(
+        @Inject('MAIL_SERVICE') private clientMail: ClientProxy, 
+        userRepository: UserRepository, 
+        roleService: RoleService, 
         @InjectMapper() private readonly mapper: Mapper ){
         this.userRepository = userRepository;
         this.roleService = roleService;
@@ -50,6 +53,8 @@ export class UserService {
             const role = await this.roleService.findOneById(user.role_id);
             userMapped.role = role.name;
         }
+        console.log('ESTOY ACA', this.clientMail);
+        this.clientMail.emit('new_mail',userMapped);
         return userMapped
     }
     async findOne(id: number): Promise<GetUserDTO>{
@@ -69,6 +74,7 @@ export class UserService {
         const entity = this.mapper.map(user, CreateUserDTO, DomainUserCreated);
         role ? entity.role_id = role.id : null ;
         const userCreated = await this.userRepository.create(entity);
+        this.clientMail.emit('new_mail', userCreated);
         return this.mapper.map(userCreated,DomainUserCreated,CreateUserDTO);
     }
 

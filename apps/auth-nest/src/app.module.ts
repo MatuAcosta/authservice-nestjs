@@ -11,6 +11,9 @@ import { BaseModule } from './modules/base/base.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { MailsenderModule } from './modules/mailsender/mailsender.module';
+import { ClientsModule,Transport } from '@nestjs/microservices';
+
+
 
 @Module({
   imports: [

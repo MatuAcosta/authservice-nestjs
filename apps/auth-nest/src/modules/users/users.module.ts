@@ -11,14 +11,17 @@ import { UserProvider } from './entity/user.provider';
 import { UserMapperProfile } from './mapper.profile';
 import { UserRepository } from './repository/user.repository';
 import { UserService } from './services/user.service';
-
+import { ClientsModule, Transport } from '@nestjs/microservices';
 @Module({
     imports:[ 
         SequelizeModule.forFeature([User]),
         forwardRef(()=> AuthModule), 
         BaseModule,
         RolesModule,
-        MailsenderModule
+        MailsenderModule,
+        ClientsModule.register([
+            {name:'MAIL_SERVICE', transport: Transport.TCP}
+        ])
     ],
     exports:[UserService],
     controllers:[UserController],
