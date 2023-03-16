@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { MicroserviceModule } from './../src/microservice.module';
+import { RedisMicroserviceModule } from './../src/redis-microservice.module';
 
-describe('MicroserviceController (e2e)', () => {
+describe('RedisMicroserviceController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [MicroserviceModule],
+      imports: [RedisMicroserviceModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();

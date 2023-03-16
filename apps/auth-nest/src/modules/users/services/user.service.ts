@@ -15,7 +15,7 @@ export class UserService {
     private salts: number = 10;
     roleService: RoleService;
     constructor(
-        @Inject('MAIL_SERVICE') private clientMail: ClientProxy, 
+        @Inject('USER_SERVICE') private userRedis: ClientProxy, 
         userRepository: UserRepository, 
         roleService: RoleService, 
         @InjectMapper() private readonly mapper: Mapper ){
@@ -53,8 +53,7 @@ export class UserService {
             const role = await this.roleService.findOneById(user.role_id);
             userMapped.role = role.name;
         }
-        console.log('ESTOY ACA', this.clientMail);
-        this.clientMail.emit('new_mail',userMapped);
+        console.log(this.userRedis.emit('new_user',userMapped));
         return userMapped
     }
     async findOne(id: number): Promise<GetUserDTO>{
@@ -74,7 +73,7 @@ export class UserService {
         const entity = this.mapper.map(user, CreateUserDTO, DomainUserCreated);
         role ? entity.role_id = role.id : null ;
         const userCreated = await this.userRepository.create(entity);
-        this.clientMail.emit('new_mail', userCreated);
+        this.userRedis.emit('new_user', userCreated);
         return this.mapper.map(userCreated,DomainUserCreated,CreateUserDTO);
     }
 

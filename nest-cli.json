@@ -27,6 +27,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/microservice/tsconfig.app.json"
       }
+    },
+    "microservice2": {
+      "type": "application",
+      "root": "apps/microservice2",
+      "entryFile": "main",
+      "sourceRoot": "apps/microservice2/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/microservice2/tsconfig.app.json"
+      }
+    },
+    "redis-microservice": {
+      "type": "application",
+      "root": "apps/redis-microservice",
+      "entryFile": "main",
+      "sourceRoot": "apps/redis-microservice/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/redis-microservice/tsconfig.app.json"
+      }
     }
   }
 }

@@ -20,7 +20,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         RolesModule,
         MailsenderModule,
         ClientsModule.register([
-        {   name:'MAIL_SERVICE', 
+        {   
+            name:'USER_SERVICE', 
             transport: Transport.REDIS,
             options:{
                 host:'localhost',
