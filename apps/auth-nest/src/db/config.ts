@@ -6,10 +6,16 @@ const config = {
     development: {
         //dialect: process.env.dialect,
         host: process.env.HOST,
-        port: 5432,
+        port: 25060,
         username:process.env.USER,
         password: process.env.PASSWORD,
-        database:process.env.DB
+        database:process.env.DB,
+        dialectOptions:{
+            ssl:{
+                require:true,
+                rejectUnauthorized:false
+            }
+        }
     },
     test:{
         dialect: 'postgres',
